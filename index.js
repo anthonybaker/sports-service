@@ -5,8 +5,8 @@ var request = require('request');
 require('dotenv').config({silent: true});
 
 var controller = Botkit.facebookbot({
-	access_token: process.env.TOKEN,
-	verify_token: process.env.VERIFY,
+	access_token: process.env.page_token,
+	verify_token: process.env.verify_token,
 	debug: true
 });
 
