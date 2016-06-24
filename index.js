@@ -1,3 +1,9 @@
+var Botkit = require('botkit');
+var http = require('http');
+var url = require('url');
+var request = require('request');
+require('dotenv').config({silent: true});
+
 if (!process.env.page_token) {
     console.log('Error: Specify page_token in environment');
     process.exit(1);
