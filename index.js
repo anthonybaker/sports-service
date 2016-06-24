@@ -8,25 +8,6 @@ if (!process.env.verify_token) {
     process.exit(1);
 }
 
-var Botkit = require('./lib/Botkit.js');
-var os = require('os');
-var commandLineArgs = require('command-line-args');
-var localtunnel = require('localtunnel');
-
-const cli = commandLineArgs([
-      {name: 'lt', alias: 'l', args: 1, description: 'Use localtunnel.me to make your bot available on the web.',
-      type: Boolean, defaultValue: false},
-      {name: 'ltsubdomain', alias: 's', args: 1,
-      description: 'Custom subdomain for the localtunnel.me URL. This option can only be used together with --lt.',
-      type: String, defaultValue: null},
-   ]);
-
-const ops = cli.parse();
-if(ops.lt === false && ops.ltsubdomain !== null) {
-    console.log("error: --ltsubdomain can only be used together with --lt.");
-    process.exit();
-}
-
 var controller = Botkit.facebookbot({
     debug: true,
     access_token: process.env.page_token,
