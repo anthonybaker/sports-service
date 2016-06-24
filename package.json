@@ -1,0 +1,25 @@
+{
+  "name": "sports-service",
+  "version": "1.0.0",
+  "description": "sports service",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonybaker/sports-service.git"
+  },
+  "keywords": [
+    "sports",
+    "service"
+  ],
+  "author": "Anthony Baker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthonybaker/sports-service/issues"
+  },
+  "homepage": "https://github.com/anthonybaker/sports-service#readme"
+}
