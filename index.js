@@ -112,80 +112,94 @@ controller.hears(['hello', 'hi', 'hey', 'Hi', 'Hello', 'Hey'], 'message_received
 		sendSportCatQuickReply(message.channel);
 	}, 4000);
 
-	setTypingOn(message.channel);
 });
 
 controller.hears(['Running'], 'message_received', function(bot, message) {
-	bot.reply(message, {
-		attachment: {
-			'type': 'template',
-			'payload': {
-				'template_type': 'generic',
-				'elements': [
-					{
-						'title': 'Available Running Programs:',
-						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377393/running_01_vxsw5r.jpg',
-						'buttons': [
-							{
-								'type': 'web_url',
-								'url': 'http://www.nike.com/gb/en_gb/c/running',
-								'title': 'Nike Running'
-							}
-						]
-					}
-				]
+		
+	setTypingOn(message.channel);
+
+	setTimeout(function() {
+		bot.reply(message, {
+			attachment: {
+				'type': 'template',
+				'payload': {
+					'template_type': 'generic',
+					'elements': [
+						{
+							'title': 'Available Running Programs:',
+							'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377393/running_01_vxsw5r.jpg',
+							'buttons': [
+								{
+									'type': 'web_url',
+									'url': 'http://www.nike.com/gb/en_gb/c/running',
+									'title': 'Nike Running'
+								}
+							]
+						}
+					]
+				}
 			}
-		}
-	});
+		});
+	}, 4000);
 });
 
 controller.hears(['Training'], 'message_received', function(bot, message) {
-	bot.reply(message, {
-		attachment: {
-			'type': 'template',
-			'payload': {
-				'template_type': 'generic',
-				'elements': [
-					{
-						'title': 'Available Training Programs:',
-						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377389/training_02_ml7ql4.jpg',
-						'buttons': [
-							{
-								'type': 'web_url',
-								'url': 'http://www.nike.com/gb/en_gb/c/training',
-								'title': 'Nike Training'
-							}
-						]
-					}
-				]
+	
+	setTypingOn(message.channel);
+
+	setTimeout(function() {
+		bot.reply(message, {
+			attachment: {
+				'type': 'template',
+				'payload': {
+					'template_type': 'generic',
+					'elements': [
+						{
+							'title': 'Available Training Programs:',
+							'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377389/training_02_ml7ql4.jpg',
+							'buttons': [
+								{
+									'type': 'web_url',
+									'url': 'http://www.nike.com/gb/en_gb/c/training',
+									'title': 'Nike Training'
+								}
+							]
+						}
+					]
+				}
 			}
-		}
-	});
+		});
+	}, 4000);
 });
 
 
 controller.hears(['Basketball'], 'message_received', function(bot, message) {
-	bot.reply(message, {
-		attachment: {
-			'type': 'template',
-			'payload': {
-				'template_type': 'generic',
-				'elements': [
-					{
-						'title': 'Available Basketball Programs:',
-						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377392/basketball_01_ajaclq.jpg',
-						'buttons': [
-							{
-								'type': 'web_url',
-								'url': 'http://www.nike.com/gb/en_gb/c/basketball',
-								'title': 'Nike Baskeball'
-							}
-						]
-					}
-				]
+		
+	setTypingOn(message.channel);
+
+	setTimeout(function() {
+		bot.reply(message, {
+			attachment: {
+				'type': 'template',
+				'payload': {
+					'template_type': 'generic',
+					'elements': [
+						{
+							'title': 'Available Basketball Programs:',
+							'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377392/basketball_01_ajaclq.jpg',
+							'buttons': [
+								{
+									'type': 'web_url',
+									'url': 'http://www.nike.com/gb/en_gb/c/basketball',
+									'title': 'Nike Baskeball'
+								}
+							]
+						}
+					]
+				}
 			}
-		}
-	});
+		});
+	}, 4000);
 });
 
 
