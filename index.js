@@ -26,6 +26,11 @@ controller.on('tick', function(bot, event) {
 
 controller.on('message_received', function(bot, message) {
 	
+	bot.say({
+			text: '(Echo) Text received: ' + message.text,
+			channel: message.user
+		});
+
 	if (message.quick_reply && message.quick_reply.payload) {
 		bot.say({
 			text: '(Echo) Text received: ' + message.quick_reply.payload,
