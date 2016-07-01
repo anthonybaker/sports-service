@@ -26,19 +26,12 @@ controller.on('tick', function(bot, event) {
 
 controller.on('message_received', function(bot, message) {
 	
-	if (message.text !== "hello") {
-		bot.say({
-				text: '(Echo) Text received: ' + message.text,
-				channel: message.user
-			});
-	}
-
-	if (message.quick_reply && message.quick_reply.payload) {
-		bot.say({
-			text: '(Echo) Text received: ' + message.quick_reply.payload,
-			channel: message.user
-		});
-	}
+	// if (message.text !== "hello") {
+	// 	bot.say({
+	// 			text: '(Echo) Text received: ' + message.text,
+	// 			channel: message.user
+	// 		});
+	// }
 
 	if (message.attachments) {
 		setTimeout(function() {
@@ -84,84 +77,8 @@ controller.on('message_received', function(bot, message) {
 // handle postbacks
 controller.on('facebook_postback', function(bot, message) {
 
-	bot.say({
-		text: '(Echo) Text received: ' + message.text + " - payload: " + message.payload,
-		channel: message.user
-	});
-
 	switch(message.payload) {
 		
-	 	case 'RUNNING_CAT':
-	 		bot.reply(message, {
-				attachment: {
-					'type': 'template',
-					'payload': {
-						'template_type': 'generic',
-						'elements': [
-							{
-								'title': 'Running Program',
-								'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377393/running_01_vxsw5r.jpg',
-								'buttons': [
-									{
-										'type': 'web_url',
-										'url': 'http://www.nike.com/gb/en_gb/c/running',
-										'title': 'Nike Running'
-									}
-								]
-							}
-						]
-					}
-				}
-			});
-			break;
-
-		case 'TRAINING_CAT':
-	 		bot.reply(message, {
-				attachment: {
-					'type': 'template',
-					'payload': {
-						'template_type': 'generic',
-						'elements': [
-							{
-								'title': 'Training Program',
-								'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377389/training_02_ml7ql4.jpg',
-								'buttons': [
-									{
-										'type': 'web_url',
-										'url': 'http://www.nike.com/gb/en_gb/c/training',
-										'title': 'Nike Training'
-									}
-								]
-							}
-						]
-					}
-				}
-			});
-			break;
-
-		case 'BASKETBALL_CAT':
-	 		bot.reply(message, {
-				attachment: {
-					'type': 'template',
-					'payload': {
-						'template_type': 'generic',
-						'elements': [
-							{
-								'title': 'Basketball Program',
-								'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377392/basketball_01_ajaclq.jpg',
-								'buttons': [
-									{
-										'type': 'web_url',
-										'url': 'http://www.nike.com/gb/en_gb/c/basketball',
-										'title': 'Nike Training'
-									}
-								]
-							}
-						]
-					}
-				}
-			});
-			break;
 	 }
 
 });
@@ -169,8 +86,22 @@ controller.on('facebook_postback', function(bot, message) {
 // user said hello
 
 controller.hears(['hello', 'hi', 'hey', 'Hi', 'Hello', 'Hey'], 'message_received', function(bot, message) {
-	console.log("receiving hello trigger. Calling sendSportCatQuickRepply method.");
-	console.log("Sender (message.channel): " + message.channel);
+
+	bot.reply(message, {
+		attachment: {
+			'type': 'template',
+			'payload': {
+				'template_type': 'generic',
+				'elements': [
+					{
+						'title': 'Welcome to Sports Service',
+						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377371/sports_01_b6gbfx.jpg',
+					}
+				]
+			}
+		}
+	});
+
 	sendSportCatQuickReply(message.channel);
 });
 
@@ -197,6 +128,56 @@ controller.hears(['Running'], 'message_received', function(bot, message) {
 		}
 	});
 });
+
+controller.hears(['Training'], 'message_received', function(bot, message) {
+	bot.reply(message, {
+		attachment: {
+			'type': 'template',
+			'payload': {
+				'template_type': 'generic',
+				'elements': [
+					{
+						'title': 'Training Program',
+						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377389/training_02_ml7ql4.jpg',
+						'buttons': [
+							{
+								'type': 'web_url',
+								'url': 'http://www.nike.com/gb/en_gb/c/training',
+								'title': 'Nike Training'
+							}
+						]
+					}
+				]
+			}
+		}
+	});
+});
+
+
+controller.hears(['Basketball'], 'message_received', function(bot, message) {
+	bot.reply(message, {
+		attachment: {
+			'type': 'template',
+			'payload': {
+				'template_type': 'generic',
+				'elements': [
+					{
+						'title': 'Basketball Program',
+						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377392/basketball_01_ajaclq.jpg',
+						'buttons': [
+							{
+								'type': 'web_url',
+								'url': 'http://www.nike.com/gb/en_gb/c/basketball',
+								'title': 'Nike Training'
+							}
+						]
+					}
+				]
+			}
+		}
+	});
+});
+
 
 
 // Function to produce Quick Replies (not currently supported by BotKit, so using FB standard call)
