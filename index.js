@@ -86,21 +86,23 @@ controller.on('facebook_postback', function(bot, message) {
 // user said hello
 
 controller.hears(['hello', 'hi', 'hey', 'Hi', 'Hello', 'Hey'], 'message_received', function(bot, message) {
-
-	bot.reply(message, {
-		attachment: {
-			'type': 'template',
-			'payload': {
-				'template_type': 'generic',
-				'elements': [
-					{
-						'title': 'Welcome to Sports Service',
-						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377371/sports_01_b6gbfx.jpg',
-					}
-				]
+	setTimeout(function() {
+		bot.reply(message, {
+			attachment: {
+				'type': 'template',
+				'payload': {
+					'template_type': 'generic',
+					'elements': [
+						{
+							'title': 'Welcome to Sports Service Bot',
+							'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377371/sports_01_b6gbfx.jpg',
+						}
+					]
+				}
 			}
-		}
-	});
+		});
+	}, 2000);
+
 
 	sendSportCatQuickReply(message.channel);
 });
@@ -185,7 +187,7 @@ controller.hears(['Basketball'], 'message_received', function(bot, message) {
 function sendSportCatQuickReply(sender) {
 	console.log("sendSportCatQuickRepply method called. Trying to send request.");
 	messageData = {
-		"text":"Hey there! What's your game?",
+		"text":"Hey there! Great to see you here. Tell me, what's your game?",
 	    "quick_replies":[
 	    	{
 	        	"content_type":"text",
