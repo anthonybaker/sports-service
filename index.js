@@ -26,10 +26,10 @@ controller.on('tick', function(bot, event) {
 
 controller.on('message_received', function(bot, message) {
 	
-	// bot.say({
-	// 	text: '(Echo) Text received: ' + message.text,
-	// 	channel: message.user
-	// });
+	bot.say({
+		text: '(Echo) Text received: ' + message.quick_replies.payload,
+		channel: message.user
+	});
 
 	if (message.attachments) {
 		setTimeout(function() {
