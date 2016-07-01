@@ -31,6 +31,8 @@ controller.on('message_received', function(bot, message) {
 	// 	channel: message.user
 	// });
 
+	debug("got a message");
+
 	if (message.attachments) {
 		setTimeout(function() {
 			bot.say({
@@ -75,9 +77,10 @@ controller.on('message_received', function(bot, message) {
 // handle postbacks
 controller.on('facebook_postback', function(bot, message) {
 
-	 switch(message.payload) {
-		
+	debug("got a message");
 
+	switch(message.payload) {
+		
 	 	case 'RUNNING_CAT':
 	 		bot.reply(message, {
 				attachment: {
@@ -181,7 +184,7 @@ function sendSportCatQuickReply(sender) {
 	      	},
 	      	{
 	        	"content_type":"text",
-	        	"title":"Training",
+	        	"title":"Basketball",
 	        	"payload":"BASKETBALL_CAT"
 	      	}
 	    ]
