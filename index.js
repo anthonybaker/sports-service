@@ -158,23 +158,25 @@ controller.on('facebook_postback', function(bot, message) {
 controller.hears(['hello', 'hi', 'hey', 'Hi', 'Hello', 'Hey'], 'message_received', function(bot, message) {
 
 	bot.reply(message, {
-		"text":"Hey there! What's your game?",
-	    "quick_replies":[
-	    	{
-	        	"content_type":"text",
-	        	"title":"Running",
-	        	"payload":"RUNNING_CAT"
-	      	},
-	     	{
-	        	"content_type":"text",
-	        	"title":"Training",
-	        	"payload":"TRAINING_CAT"
-	      	},
-	      	{
-	        	"content_type":"text",
-	        	"title":"Training",
-	        	"payload":"BASKETBALL_CAT"
-	      	}
-	    ]
+		attachment: {
+			"text":"Hey there! What's your game?",
+		    "quick_replies":[
+		    	{
+		        	"content_type":"text",
+		        	"title":"Running",
+		        	"payload":"RUNNING_CAT"
+		      	},
+		     	{
+		        	"content_type":"text",
+		        	"title":"Training",
+		        	"payload":"TRAINING_CAT"
+		      	},
+		      	{
+		        	"content_type":"text",
+		        	"title":"Training",
+		        	"payload":"BASKETBALL_CAT"
+		      	}
+		    ]
+		}
 	});
 });
