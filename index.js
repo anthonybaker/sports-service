@@ -156,8 +156,17 @@ controller.on('facebook_postback', function(bot, message) {
 // user said hello
 
 controller.hears(['hello', 'hi', 'hey', 'Hi', 'Hello', 'Hey'], 'message_received', function(bot, message) {
+	console.log("receiving hello trigger. Calling sendSportCatQuickRepply method.");
+	console.log("Sender (message.channel): " + message.channel);
+	sendSportCatQuickReply(message.channel);
+});
 
-	bot.say(message, {
+
+// Function to produce Quick Replies (not currently supported by BotKit, so using FB standard call)
+
+function sendSportCatQuickReply(sender) {
+	console.log("sendSportCatQuickRepply method called. Trying to send request.");
+	messageData = {
 		"text":"Hey there! What's your game?",
 	    "quick_replies":[
 	    	{
@@ -176,5 +185,20 @@ controller.hears(['hello', 'hi', 'hey', 'Hi', 'Hello', 'Hey'], 'message_received
 	        	"payload":"BASKETBALL_CAT"
 	      	}
 	    ]
-	});
-});
+	}
+	request({
+	    url: 'https://graph.facebook.com/v2.6/me/messages',
+	    qs: {access_token:process.env.page_token},
+	    method: 'POST',
+	    json: {
+	        recipient: {id:sender},
+	        message: messageData,
+	    }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
