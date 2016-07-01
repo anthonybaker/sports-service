@@ -174,6 +174,30 @@ controller.hears(['hello', 'hi', 'hey', 'Hi', 'Hello', 'Hey'], 'message_received
 	sendSportCatQuickReply(message.channel);
 });
 
+controller.hears(['Running'], 'message_received', function(bot, message) {
+	bot.reply(message, {
+		attachment: {
+			'type': 'template',
+			'payload': {
+				'template_type': 'generic',
+				'elements': [
+					{
+						'title': 'Running Program',
+						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377393/running_01_vxsw5r.jpg',
+						'buttons': [
+							{
+								'type': 'web_url',
+								'url': 'http://www.nike.com/gb/en_gb/c/running',
+								'title': 'Nike Running'
+							}
+						]
+					}
+				]
+			}
+		}
+	});
+});
+
 
 // Function to produce Quick Replies (not currently supported by BotKit, so using FB standard call)
 
