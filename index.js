@@ -28,10 +28,10 @@ controller.on('message_received', function(bot, message) {
 	
 	setTimeout(function() {
 		bot.say({
-			text: 'Text received: ' + message.text,
+			text: '(Echo) Text received: ' + message.text,
 			channel: message.user
 		});
-	}, 7000);
+	},);
 
 	if (message.attachments) {
 		setTimeout(function() {
@@ -158,35 +158,26 @@ controller.on('facebook_postback', function(bot, message) {
 // user said hello
 
 controller.hears(['hello', 'hi', 'hey', 'Hi', 'Hello', 'Hey'], 'message_received', function(bot, message) {
-	
-	if (message.text) {
-		setTimeout(function() {
-			bot.say({
-				text: 'Text received: ' + message.text,
-				channel: message.user
-			});
-		}, 7000);
-	}
 
-	// 	bot.reply(message, {
-	// 		"text":"Hey there! What's your game?",
-	// 	    "quick_replies":[
-	// 	      {
-	// 	        "content_type":"text",
-	// 	        "title":"Running",
-	// 	        "payload":"RUNNING_CAT"
-	// 	      },
-	// 	      {
-	// 	        "content_type":"text",
-	// 	        "title":"Training",
-	// 	        "payload":"TRAINING_CAT"
-	// 	      },
-	// 	      {
-	// 	        "content_type":"text",
-	// 	        "title":"Training",
-	// 	        "payload":"BASKETBALL_CAT"
-	// 	      }
-	// 	    ]
-	// 	}
-	// });
+		bot.reply(message, {
+			"text":"Hey there! What's your game?",
+		    "quick_replies":[
+		      {
+		        "content_type":"text",
+		        "title":"Running",
+		        "payload":"RUNNING_CAT"
+		      },
+		      {
+		        "content_type":"text",
+		        "title":"Training",
+		        "payload":"TRAINING_CAT"
+		      },
+		      {
+		        "content_type":"text",
+		        "title":"Training",
+		        "payload":"BASKETBALL_CAT"
+		      }
+		    ]
+		}
+	});
 });
