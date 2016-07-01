@@ -31,8 +31,6 @@ controller.on('message_received', function(bot, message) {
 	// 	channel: message.user
 	// });
 
-	debug("got a message");
-
 	if (message.attachments) {
 		setTimeout(function() {
 			bot.say({
@@ -77,7 +75,10 @@ controller.on('message_received', function(bot, message) {
 // handle postbacks
 controller.on('facebook_postback', function(bot, message) {
 
-	debug("got a message");
+	bot.say({
+		text: '(Echo) Text received: ' + message.text + " - payload: " + message.payload,
+		channel: message.user
+	});
 
 	switch(message.payload) {
 		
