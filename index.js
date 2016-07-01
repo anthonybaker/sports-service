@@ -86,25 +86,26 @@ controller.on('facebook_postback', function(bot, message) {
 // user said hello
 
 controller.hears(['hello', 'hi', 'hey', 'Hi', 'Hello', 'Hey'], 'message_received', function(bot, message) {
-	setTimeout(function() {
-		bot.reply(message, {
-			attachment: {
-				'type': 'template',
-				'payload': {
-					'template_type': 'generic',
-					'elements': [
-						{
-							'title': 'Welcome to Sports Service Bot',
-							'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377371/sports_01_b6gbfx.jpg',
-						}
-					]
-				}
+
+	bot.reply(message, {
+		attachment: {
+			'type': 'template',
+			'payload': {
+				'template_type': 'generic',
+				'elements': [
+					{
+						'title': 'Welcome to Sports Service Bot',
+						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377371/sports_01_b6gbfx.jpg',
+					}
+				]
 			}
-		});
-	}, 2000);
+		}
+	});
 
 
-	sendSportCatQuickReply(message.channel);
+	setTimeout(function() {
+		sendSportCatQuickReply(message.channel);
+	}, 4000);
 });
 
 controller.hears(['Running'], 'message_received', function(bot, message) {
