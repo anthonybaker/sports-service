@@ -157,7 +157,7 @@ controller.on('facebook_postback', function(bot, message) {
 
 controller.hears(['hello', 'hi', 'hey', 'Hi', 'Hello', 'Hey'], 'message_received', function(bot, message) {
 
-	bot.send(message, {
+	bot.say(message, {
 		"text":"Hey there! What's your game?",
 	    "quick_replies":[
 	    	{
