@@ -87,25 +87,32 @@ controller.on('facebook_postback', function(bot, message) {
 
 controller.hears(['hello', 'hi', 'hey', 'Hi', 'Hello', 'Hey'], 'message_received', function(bot, message) {
 
-	bot.reply(message, {
-		attachment: {
-			'type': 'template',
-			'payload': {
-				'template_type': 'generic',
-				'elements': [
-					{
-						'title': 'Welcome to Sports Service Bot',
-						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377371/sports_01_b6gbfx.jpg',
-					}
-				]
+
+	setTypingOn(message.channel);
+
+	setTimeout(function() {
+		bot.reply(message, {
+			attachment: {
+				'type': 'template',
+				'payload': {
+					'template_type': 'generic',
+					'elements': [
+						{
+							'title': 'Welcome to Sports Service Bot',
+							'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377371/sports_01_b6gbfx.jpg',
+						}
+					]
+				}
 			}
-		}
-	});
+		});
+	}, 2000);
 
 
 	setTimeout(function() {
 		sendSportCatQuickReply(message.channel);
 	}, 4000);
+
+	setTypingOn(message.channel);
 });
 
 controller.hears(['Running'], 'message_received', function(bot, message) {
@@ -116,7 +123,7 @@ controller.hears(['Running'], 'message_received', function(bot, message) {
 				'template_type': 'generic',
 				'elements': [
 					{
-						'title': 'Running Program',
+						'title': 'Available Running Programs:',
 						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377393/running_01_vxsw5r.jpg',
 						'buttons': [
 							{
@@ -140,7 +147,7 @@ controller.hears(['Training'], 'message_received', function(bot, message) {
 				'template_type': 'generic',
 				'elements': [
 					{
-						'title': 'Training Program',
+						'title': 'Available Training Programs:',
 						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377389/training_02_ml7ql4.jpg',
 						'buttons': [
 							{
@@ -165,13 +172,13 @@ controller.hears(['Basketball'], 'message_received', function(bot, message) {
 				'template_type': 'generic',
 				'elements': [
 					{
-						'title': 'Basketball Program',
+						'title': 'Available Basketball Programs:',
 						'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377392/basketball_01_ajaclq.jpg',
 						'buttons': [
 							{
 								'type': 'web_url',
 								'url': 'http://www.nike.com/gb/en_gb/c/basketball',
-								'title': 'Nike Training'
+								'title': 'Nike Baskeball'
 							}
 						]
 					}
@@ -186,7 +193,9 @@ controller.hears(['Basketball'], 'message_received', function(bot, message) {
 // Function to produce Quick Replies (not currently supported by BotKit, so using FB standard call)
 
 function sendSportCatQuickReply(sender) {
-	console.log("sendSportCatQuickRepply method called. Trying to send request.");
+	
+	console.log("sendSportCatQuickRepply method called.");
+
 	messageData = {
 		"text":"Hey there! Great to see you here. Tell me, what's your game?",
 	    "quick_replies":[
@@ -214,6 +223,48 @@ function sendSportCatQuickReply(sender) {
 	    json: {
 	        recipient: {id:sender},
 	        message: messageData,
+	    }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
+
+function setTypingOn(sender) {
+
+	console.log("setTypingOn method called.");
+	
+	request({
+	    url: 'https://graph.facebook.com/v2.6/me/messages',
+	    qs: {access_token:process.env.page_token},
+	    method: 'POST',
+	    json: {
+	        recipient: {id:sender},
+	        sender_action: "typing_on",
+	    }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
+
+function setTypingOff(sender) {
+
+	console.log("setTypingOff method called.");
+	
+	request({
+	    url: 'https://graph.facebook.com/v2.6/me/messages',
+	    qs: {access_token:process.env.page_token},
+	    method: 'POST',
+	    json: {
+	        recipient: {id:sender},
+	        sender_action: "typing_off",
 	    }
     }, function(error, response, body) {
         if (error) {
