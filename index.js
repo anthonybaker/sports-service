@@ -199,7 +199,7 @@ controller.hears(['Basketball'], 'message_received', function(bot, message) {
 				}
 			}
 		});
-	}, 20x§00);
+	}, 2000);
 });
 
 
