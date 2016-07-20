@@ -98,7 +98,7 @@ controller.hears(['hello', 'hi', 'hey', 'Hi', 'Hello', 'Hey'], 'message_received
 					'template_type': 'generic',
 					'elements': [
 						{
-							'title': 'Welcome to Sports Service Bot',
+							'title': 'Welcome to 1:1 service',
 							'image_url': 'http://res.cloudinary.com/abakerp/image/upload/v1467377371/sports_01_b6gbfx.jpg',
 						}
 					]
@@ -140,7 +140,7 @@ controller.hears(['Running'], 'message_received', function(bot, message) {
 				}
 			}
 		});
-	}, 4000);
+	}, 2000);
 });
 
 controller.hears(['Training'], 'message_received', function(bot, message) {
@@ -169,7 +169,7 @@ controller.hears(['Training'], 'message_received', function(bot, message) {
 				}
 			}
 		});
-	}, 4000);
+	}, 2000);
 });
 
 
@@ -199,7 +199,7 @@ controller.hears(['Basketball'], 'message_received', function(bot, message) {
 				}
 			}
 		});
-	}, 4000);
+	}, 20x§00);
 });
 
 
